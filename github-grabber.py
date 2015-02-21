@@ -27,7 +27,15 @@ def grab_repos(url):
 # download repos linked to in json
 def download(repo_list, oauth_key, local_folder):
 	for repo in repo_list:
-		git.Git().clone('https://' + oauth_key + '@' + repo['clone_url'][8:], os.path.join(local_folder, repo['name']))
+		try:
+			git.Repo.clone_from('https://' + oauth_key + '@' + repo['clone_url'][8:], os.path.join(local_folder, repo['name']))
+			pass
+		except Exception, e:
+			print 'error cloning ' + repo['name'] + '\n' + str(e)
+		else:
+			print 'cloned: ' + repo['name']
+		finally:
+			pass
 
 # main method
 def main():
