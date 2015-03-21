@@ -10,7 +10,7 @@
 import sys
 import os
 import simplejson as json
-import urllib2
+import httplib
 import git as git
 
 template_url = 'https://api.github.com/orgs/'
