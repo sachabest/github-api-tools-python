@@ -35,15 +35,14 @@ def map_names_ids(token, org_name):
 def add_member(token, org_name, team_map, username, team_number):
 	headers = {'Authorization': ' token ' + token, 'Content-type': 'application/json', 'Accept': 'application/vnd.github.v3+json'}
 	team_id = team_map[team_number]
-	add_member_url = template_url + orgs_url + org_name + teams_url + str(team_id) + memberships_url + username
+	add_member_url = template_url +  teams_url + '/' + str(team_id) + memberships_url + username
 	r = requests.put(add_member_url, headers=headers)
-	print(r.text)
+	if 'active' in r.text: print('added ' + username + ' to ' + team_number)
 
 def parse_csv(token, org_name, csv_file):
 	reader = csv.reader(csv_file)
 	team_map = map_names_ids(token, org_name)
 	for row in reader: 
-		print(row)
 		add_member(token, org_name, team_map, row[0], 'Group' + row[1])
 
 # main method
