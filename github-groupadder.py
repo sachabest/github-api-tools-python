@@ -38,6 +38,8 @@ def add_member(token, org_name, team_map, username, team_number):
 	add_member_url = template_url +  teams_url + '/' + str(team_id) + memberships_url + username
 	r = requests.put(add_member_url, headers=headers)
 	if 'active' in r.text: print('added ' + username + ' to ' + team_number)
+	elif 'pending' in r.text: print('invitation pending to ' + username + ' to ' + team_number)
+
 
 def parse_csv(token, org_name, csv_file):
 	reader = csv.reader(csv_file)
@@ -55,7 +57,7 @@ def main():
 	csv_filename = sys.argv[2]
 	#auth_req = urllib2.Request(auth_url + oauth_key)
 	#auth_res = urllib2.urlopen(auth_req)
-	csv_file = open(csv_filename, 'r');
+	csv_file = open(csv_filename, 'rU');
 	parse_csv(oauth_key, org_name, csv_file)
 
 if __name__ == '__main__':

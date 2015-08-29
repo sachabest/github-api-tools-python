@@ -3,7 +3,7 @@
 #
 # Requires: OAuth Key (https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
 # Requires: simplejson (pip install simplejson)
-# Requires: Python 2.7
+# Requires: Python 3
 #
 # Usage: github-groupmaker.py org_name oauth_key max_group
 
